@@ -1,13 +1,13 @@
 {
   "name": "dove-insert",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Insert any data type to the DOM",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/testling"
+    "test": "node_modules/.bin/testling | node_modules/.bin/faucet"
   },
   "repository": {
     "type": "git",
@@ -26,14 +26,25 @@
   },
   "devDependencies": {
     "tape": "~2.3.2",
-    "testling": "~1.5.6"
+    "testling": "~1.5.6",
+    "faucet": "0.0.0"
   },
   "testling": {
     "files": [
       "test/index.js"
     ],
     "browsers": [
-      "chrome/latest"
+      "iexplore/10.0",
+      "iexplore/9.0",
+      "firefox/16..latest",
+      "chrome/22..latest",
+      "safari/5.1..latest",
+      "ipad/6.0..latest",
+      "iphone/6.0..latest",
+      "android-browser/4.2..latest"
     ]
+  },
+  "dependencies": {
+    "domify": "~1.1.1"
   }
 }
