@@ -1,6 +1,6 @@
 {
   "name": "dove-insert",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Insert any data type to the DOM",
   "main": "index.js",
   "directories": {

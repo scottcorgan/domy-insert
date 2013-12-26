@@ -8,18 +8,19 @@ var insert = function (elem, parent) {
 };
 
 insert.before = function (elem, before, parent) {
-  var domEl = queryDomElement(elem);
-  queryParent(parent).insertBefore(domEl, document.querySelector(before));
-  
-  return domEl;
+  return insertAdjacent(elem, document.querySelector(before), parent);
 };
 
 insert.after = function (elem, after, parent) {
+  return insertAdjacent(elem, document.querySelector(after).nextSibling, parent);
+};
+
+function insertAdjacent(elem, adjacentTo, parent) {
   var domEl = queryDomElement(elem);
-  queryParent(parent).insertBefore(domEl, document.querySelector(after).nextSibling);
+  queryParent(parent).insertBefore(domEl, adjacentTo);
   
   return domEl;
-};
+}
 
 function queryDomElement (elem) {
   return (typeof elem === 'string') ? domify(elem) : elem;
