@@ -45,6 +45,7 @@
     ]
   },
   "dependencies": {
-    "domify": "~1.1.1"
+    "domify": "~1.1.1",
+    "domy": "~0.2.1"
   }
 }
