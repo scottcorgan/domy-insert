@@ -5,12 +5,11 @@ var haveUrl = false;
 
 process.stdin.on('data', function (data) {
   if (!haveUrl) {
-    var p = spawn('node_modules/.bin/phantomjs', ['test/p.js', data.toString()]);
-    p.stdout.pipe(process.stdout);
+    spawn('node_modules/.bin/phantomjs', ['test/p.js', data.toString()]);
+    process.stdout.write('Running tests at url: ');
   }
-  
+    
   process.stdout.write(data);
-  
   haveUrl = true;
 });
 

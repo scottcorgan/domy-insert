@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/testling -u | ./test/tester.js"
+    "test": "node_modules/.bin/testling"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "tape": "~2.3.2",
-    "phantomjs": "~1.9.2-6",
     "testling": "~1.5.6"
   },
   "testling": {
