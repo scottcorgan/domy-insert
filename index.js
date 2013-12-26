@@ -1,7 +1,7 @@
-var domify = require('domify');
+var element = require('dom-element');
 
 var insert = function (elem, parent) {
-  var domEl = queryDomElement(elem);
+  var domEl = element(elem);
   queryParent(parent).appendChild(domEl);
   
   return domEl;
@@ -16,14 +16,10 @@ insert.after = function (elem, after, parent) {
 };
 
 function insertAdjacent(elem, adjacentTo, parent) {
-  var domEl = queryDomElement(elem);
+  var domEl = element(elem);
   queryParent(parent).insertBefore(domEl, adjacentTo);
   
   return domEl;
-}
-
-function queryDomElement (elem) {
-  return (typeof elem === 'string') ? domify(elem) : elem;
 }
 
 function queryParent(parent) {
