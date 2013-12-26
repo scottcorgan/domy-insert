@@ -1,6 +1,6 @@
 {
   "name": "domy-insert",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Insert any data type to the DOM",
   "main": "index.js",
   "directories": {
@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "domy": "0.2.x",
-    "dom-element": "0.1.x"
+    "domy-element": "0.1.x"
   }
 }

@@ -1,4 +1,4 @@
-var element = require('dom-element');
+var element = require('domy-element');
 
 var insert = function (elem, parent) {
   var domEl = element(elem);
