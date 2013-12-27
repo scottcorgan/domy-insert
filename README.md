@@ -41,7 +41,7 @@ Creates and returns an object with the following methods available:
 * `beginnning`
 * `end`
 
-## Instanc Methods
+## Instance Methods
 
 ### before(sibling[, parent])
 
