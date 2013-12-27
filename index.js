@@ -1,41 +1,50 @@
 var element = require('domy-element');
 
-var insert = function (elem, parent) {
-  var domEl = element(elem);
-  insert._queryParent(parent).appendChild(domEl);
+module.exports = function insert (elem) {
+  var domElement = element(elem);
   
-  return domEl;
+  return new Inserter(domElement);
 };
 
-insert.before = function (elem, before, parent) {
-  return insert._adjacent(elem, element(before), parent);
+var Inserter = function (elem) {
+  this.element = elem;
 };
 
-insert.after = function (elem, after, parent) {
-  return insert._adjacent(elem, document.querySelector(after).nextSibling, parent);
+Inserter.prototype.before = function (parentElement, parent) {
+  this._adjacent(this.element, element(parentElement), parent);
+  
+  return this;
 };
 
-insert.beginning = function (elem, parent) {
-  var parentDomEl = insert._queryParent(parent);
-  return insert.before(elem, parentDomEl.firstChild, parentDomEl);
+Inserter.prototype.after = function (parentElement, parent) {
+  this._adjacent(this.element, element(parentElement).nextSibling, parent);
+  
+  return this;
 };
 
-insert.end = function (elem, parent) {
-  return insert(elem, parent);
+Inserter.prototype.beginning = function (parentElement) {
+  var parentDomEl = this._queryParent(parentElement);
+  this.before(parentDomEl.firstChild, parentDomEl);
+  
+  return this;
 };
 
-insert._adjacent = function (elem, adjacentTo, parent) {
+Inserter.prototype.end = function (parentElement) {
+  this._queryParent(parentElement).appendChild(this.element);
+  
+  return this;
+};
+
+Inserter.prototype._adjacent = function (elem, adjacentTo, parent) {
   var domEl = element(elem);
-  insert._queryParent(parent).insertBefore(domEl, adjacentTo);
+  this._queryParent(parent).insertBefore(domEl, adjacentTo);
   
   return domEl;
 }
 
-insert._queryParent = function (parent) {
+Inserter.prototype._queryParent = function (parent) {
   if (!parent) parent = document.body;
   if (typeof parent === 'string') parent = document.querySelector(parent);
   
   return parent;
-}
-
-module.exports = insert;
+};
