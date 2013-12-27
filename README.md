@@ -17,46 +17,50 @@ npm install domy-insert --save
 ```js
 var insert = require('domy-insert');
 
-insert('<div class="item"></div>');
-insert.before('<div class="before-item"></div>', '.item');
+insert('<div class="item"></div>').after('.some-parent-element');
+insert('<div class="before-item"></div>').before('.item');
 
 var div = document.createElement('div');
 div.className = 'another-element';
 
-insert(div, '.parent');
+insert(div).beginning('.parent');
 ```
 
 ## Methods
 
-### insert(element[, parent])
+### insert(element)
 
 * `element` - string OR DOM element to insert
-* `parent ` - string OR DOM element to insert the `element` to. Defaults to `document.body`
 
-### insert.before(element, sibling[, parent])
+Creates and returns an object with the following methods available:
 
-* `element` - string OR DOM element to insert
+* before
+* after
+* beginnning
+* end
+
+## Instanc Methods
+
+### before(sibling[, parent])
+
 * `sibling` - string or object of element to insert before
 * `parent ` - string or DOM element of context of insert. Defaults to `document.body`
 
-### insert.after(element, sibling[, parent])
+### after(sibling[, parent])
 
-* `element` - string OR DOM element to insert
 * `sibling` - string or object of element to insert after
 * `parent ` - string or DOM element of context of insert. Defaults to `document.body`
 
-### insert.beginning(element, parent)
+### beginning([parent])
 
 Insert an element at the beginning of the given parent's child node list
 
-* `element` - string OR DOM element to insert
 * `parent` - string or DOM element of context of insert. Defaults to `document.body`
 
-### insert.end(element, parent)
+### end([parent])
 
 Works the same as `insert(element, parent)`. Inserts element at the end of the given element context
 
-* `element` - string OR DOM element to insert
 * `parent` - string or DOM element of context of insert. Defaults to `document.body`
 
  
