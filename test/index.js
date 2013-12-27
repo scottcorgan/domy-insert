@@ -3,6 +3,15 @@ var test = require('tape');
 var children = require('domy-children');
 var element = require('domy-element');
 
+/*
+
+  insert(elem1).after(elem2)
+  insert(elem1).before(elem2)
+  insert(elem1).beginning(elem2)
+  insert(elem1).end(elem2)
+
+ */
+
 test('inserts a DOM element from a string', function (t) {
   var el = insert('<div class="item"></div>');
   var insertedDiv = children.last(document.body);
