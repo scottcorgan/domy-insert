@@ -36,10 +36,10 @@ insert(div).end() // inserted at end of document.body
 
 Creates and returns an object with the following methods available:
 
-* before
-* after
-* beginnning
-* end
+* `before`
+* `after`
+* `beginnning`
+* `end`
 
 ## Instanc Methods
 
