@@ -24,6 +24,8 @@ var div = document.createElement('div');
 div.className = 'another-element';
 
 insert(div).beginning('.parent');
+
+insert(div).end() // inserted at end of document.body
 ```
 
 ## Methods
