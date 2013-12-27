@@ -1,17 +1,11 @@
 var insert = require('../index.js');
 var test = require('tape');
-
-/*
-
-  x insert('<div></div>', '.parent');
-  x insert.after();
-  x insert.before();
-  
- */
+var children = require('domy-children');
+var element = require('domy-element');
 
 test('inserts a DOM element from a string', function (t) {
   var el = insert('<div class="item"></div>');
-  var insertedDiv = document.body.childNodes[document.body.childNodes.length - 1];
+  var insertedDiv = children.last(document.body);
   
   t.deepEqual(insertedDiv, el);
   t.end();
@@ -20,10 +14,9 @@ test('inserts a DOM element from a string', function (t) {
 test('inserts a DOM element from a DOM element' , function (t) {
   document.body.removeChild(document.querySelector('.item'));
   
-  var div = document.createElement('div');
-  div.className = 'item';
+  var div = element('<div class="item"></div>');
   var el = insert(div);
-  var insertedDiv = document.body.childNodes[document.body.childNodes.length - 1];
+  var insertedDiv = children.last(document.body);
   
   t.deepEqual(insertedDiv, el);
   t.end();
@@ -34,7 +27,7 @@ test('inserts DOM in parent element when parent is passed as a string', function
   
   var parentEl = insert('<div class="parent"></div>');
   var childEl = insert('<div class="item"></div>', '.parent');
-  var insertedEl = parentEl.childNodes[parentEl.childNodes.length - 1];
+  var insertedEl = children.last(parentEl);
   
   t.deepEqual(insertedEl, childEl);
   t.end();
@@ -45,7 +38,7 @@ test('inserts DOM in a parent lemenet when parent is passed as a DOM object', fu
   
   var parentEl = insert('<div class="parent"></div>');
   var childEl = insert('<div class="item"></div>', parentEl);
-  var insertedEl = parentEl.childNodes[parentEl.childNodes.length - 1];
+  var insertedEl = children.last(parentEl);
   
   t.deepEqual(insertedEl, childEl);
   t.end();
@@ -63,8 +56,7 @@ test('inserts an element before a given element as a DOM object', function (t) {
   document.body.removeChild(document.querySelector('.before'));
   
   var parent = document.querySelector('.parent');
-  var div = document.createElement('div');
-  div.className = 'before';
+  var div = element('<div class="before"></div>')
   var beforeEl = insert.before(div, '.parent');
   
   t.deepEqual(beforeEl, parent.previousSibling);
@@ -83,10 +75,28 @@ test('inserts an element before a given element as a DOM object', function (t) {
   document.body.removeChild(document.querySelector('.after'));
   
   var parent = document.querySelector('.parent');
-  var div = document.createElement('div');
-  div.className = 'after';
+  var div = element('<div class="after"></div>');
   var afterEl = insert.after(div, '.parent');
   
   t.deepEqual(afterEl, parent.nextSibling);
+  t.end();
+});
+
+test('inserts element at the beginning of the given parent element', function (t) {
+  var parent = element('.parent');
+  var beginning = element('<div class="beginning"></div>');
+  
+  insert.beginning(beginning, parent);
+  
+  t.deepEqual(beginning, children.first(parent));
+  t.end();
+});
+
+test('inserts element at the end of the given parent element', function (t) {
+  var end = element('<div class="end"></div>');
+  
+  insert.end(end, '.parent');
+  
+  t.deepEqual(end, children.last('.parent'));
   t.end();
 });

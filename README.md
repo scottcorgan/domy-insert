@@ -44,6 +44,21 @@ insert(div, '.parent');
 * `element` - string OR DOM element to insert
 * `sibling` - string or object of element to insert after
 * `parent ` - string or DOM element of context of insert. Defaults to `document.body`
+
+### insert.beginning(element, parent)
+
+Insert an element at the beginning of the given parent's child node list
+
+* `element` - string OR DOM element to insert
+* `parent` - string or DOM element of context of insert. Defaults to `document.body`
+
+### insert.end(element, parent)
+
+Works the same as `insert(element, parent)`. Inserts element at the end of the given element context
+
+* `element` - string OR DOM element to insert
+* `parent` - string or DOM element of context of insert. Defaults to `document.body`
+
  
 ## Run Tests
  
