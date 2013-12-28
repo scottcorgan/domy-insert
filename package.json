@@ -1,6 +1,6 @@
 {
   "name": "domy-insert",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Insert any data type to the DOM",
   "main": "index.js",
   "directories": {
@@ -27,7 +27,8 @@
   "devDependencies": {
     "tape": "~2.3.2",
     "testling": "~1.5.6",
-    "domy-children": "0.2.x"
+    "domy-children": "0.2.x",
+    "domy-element": "0.4.x"
   },
   "testling": {
     "files": [
